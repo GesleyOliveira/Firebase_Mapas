@@ -13,6 +13,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/fatec_votorantim.png" type="image/png">
+    <!--leaflet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <title>Área Reservada</title>
 </head>
 
@@ -74,9 +77,11 @@
                     <div class="mb-3">
                         <button class="btn btn-success" id="salvar" type="submit"><i class="bi bi-save"></i>Salvar</button>
                         <button class="btn btn-danger" id="limpar" type="reset"><i class="bi bi-x"></i>Limpar</button>
-
                     </div>
                 </form>
+            </div>
+            <div class="col-md-6">
+                <div id="map"></div>
             </div>
         </div>
     </div>
@@ -89,6 +94,7 @@
     <!-- Script do projeto -->
     <script src="js/firebase.js"></script>
     <script src="js/util.js"></script>
+    <script src="js/leaflet.js"></script>
     <script>
     //obtendo a referência aos campos
     const cepInput = document.getElementById('cep')
@@ -136,6 +142,7 @@
         }
         salvaEstabelecimento(estabelecimentoData)
     })
+    carregaMapa()
     </script>
 </body>
 
