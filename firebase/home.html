@@ -71,6 +71,11 @@
                             placeholder="Longitude em Graus">
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <button class="btn btn-success" id="salvar" type="submit"><i class="bi bi-save"></i>Salvar</button>
+                        <button class="btn btn-danger" id="limpar" type="reset"><i class="bi bi-x"></i>Limpar</button>
+
+                    </div>
                 </form>
             </div>
         </div>
@@ -118,6 +123,19 @@
         alert('Cep inválido. Fora do padrão ' + cepPattern)
     }
 })
+    // Evento submit do formulário
+    document.getElementById('formCadastro').addEventListener('submit', function (event){
+        event.preventDefault()//evita recarregar o form
+
+        const estabelecimentoData = {
+            razao: document.getElementById('razao').value,
+            cep: document.getElementById('cep').value,
+            endereco: document.getElementById('endereco').value,
+            latitude: document.getElementById('lat').value,
+            longitude: document.getElementById('long').value,
+        }
+        salvaEstabelecimento(estabelecimentoData)
+    })
     </script>
 </body>
 

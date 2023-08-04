@@ -50,3 +50,21 @@ const firebaseConfig = {
     alert(`Não foi possível fazer o logout: ${error.message}`)
   })
 }
+
+async function salvaEstabelecimento(estabelecimento){
+  let usuarioAtual = firebase.auth().currentUser
+
+  return await firebase.database().ref('estabelecimentos').push({
+    ...estabelecimento, 
+    usuarioInclusao: {
+      uid: usuarioAtual.uid,
+      nome: usuarioAtual.displayName
+    }
+  }).then(()=>{
+    alert('Registro incluído com sucesso!')
+    //limpa o form
+    document.getElementById('formCadastro').reset()
+  }).catch(error => {
+    alert(`Erro ao salvar: ${error.message}`)
+  })
+}
