@@ -27,9 +27,26 @@ const firebaseConfig = {
     firebase.auth().onAuthStateChanged(user => {
       if(user){
         //Salvamos o id do user localmente
-        localStorage.setItem('Usuário não logado!')
+        localStorage.setItem('usuarioId', user.uid)
+        //Inserindo a imagem do usuário 
+        let imagem = document.getElementById('imagemUsuario')
+
+        user.photoURL ? imagem.innerHTML +=
+        `<img src="${user.photoURL}" alt="Foto do usuário" title="${user.displayName}" class="img
+        rounded-circle" width="48" />`
+        : `<img src="images/logo-google.svg"
+        class="img rounded-circle" width="48" />`
         } else {
         window.location.href = `${urlApp}/`
       }
     })
   }
+  function logoutFirebase(){
+  firebase.auth().signOut().then(function(){
+    localStorage.removeItem('usuarioId')
+    window.location.href = `${urlApp}/`
+  })
+  .catch(function(error){
+    alert(`Não foi possível fazer o logout: ${error.message}`)
+  })
+}
