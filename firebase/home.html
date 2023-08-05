@@ -106,13 +106,14 @@
         const enderecoValue = endInput.value
 
         getLatLong(enderecoValue, (erro, latitude, longitude) => {
-            if(erro){alert(erro)}
+            if (erro) {alert(erro)}
             else {
                 latInput.value = latitude
                 longInput.value = longitude
             }
         })
     })
+    
     //adicionando o evento de escuta no cep
     cepInput.addEventListener('blur', function(){
     //Obtendo o valor digitado
@@ -138,7 +139,7 @@
             cep: document.getElementById('cep').value,
             endereco: document.getElementById('endereco').value,
             latitude: document.getElementById('lat').value,
-            longitude: document.getElementById('long').value,
+            longitude: document.getElementById('long').value
         }
         salvaEstabelecimento(estabelecimentoData)
     })
